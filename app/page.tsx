@@ -1,69 +1,87 @@
+import Link from "next/link";
 import Image from "next/image";
+
+const atouts = [
+  {
+    icone: "🔬",
+    titre: "Pharmacie & qualité",
+    texte:
+      "Contrôle qualité physicochimique, HPLC, BPF et réglementation pharmaceutique.",
+    couleur: "",
+  },
+  {
+    icone: "📊",
+    titre: "Pharmaco-économie",
+    texte:
+      "Master en pharmaco-économie et market access : économie de la santé et accès au marché.",
+    couleur: "green",
+  },
+  {
+    icone: "💻",
+    titre: "Développement web",
+    texte:
+      "HTML, CSS, JavaScript, Node.js, MongoDB et Next.js : je construis des applications web.",
+    couleur: "",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="hero">
+        <div className="container">
+          <div className="row align-items-center g-5">
+            <div className="col-md-7 fade-up">
+              <span className="chip green">👋 Bienvenue</span>
+              <h1 className="display-4 mt-3">
+                Bonjour, je suis{" "}
+                <span style={{ color: "var(--sage-dark)" }}>Seloua</span>
+              </h1>
+              <p className="lead my-4">
+                Diplômée en industrie pharmaceutique, étudiante en
+                pharmaco-économie et passionnée de développement web.
+              </p>
+              <div className="d-flex flex-wrap gap-3">
+                <Link href="/projets" className="btn btn-sage">
+                  Voir mes projets
+                </Link>
+                <Link href="/contact" className="btn btn-butter">
+                  Me contacter
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-5 fade-up delay-1">
+              <div className="avatar-frame" style={{ position: "relative" }}>
+                <Image
+                  src="/Profilepic.png"
+                  alt="Photo de Seloua"
+                  fill
+                  sizes="280px"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="container py-4">
+        <h2 className="section-title">Ce que je fais</h2>
+        <div className="row g-4">
+          {atouts.map((atout) => (
+            <div className="col-md-4" key={atout.titre}>
+              <div className="card card-soft h-100 p-4">
+                <div className={`icon-bubble ${atout.couleur}`}>
+                  {atout.icone}
+                </div>
+                <h3 className="h5">{atout.titre}</h3>
+                <p className="mb-0">{atout.texte}</p>
+              </div>
+            </div>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
